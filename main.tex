@@ -57,25 +57,25 @@ contain at least 10 samples and all three classes have the same number of sample
 		\hline
 		Sample of Class 1 & Sample of Class 2 & Sample of Class 3 \\ [0.5ex]
 		\hline\hline
-		(5,1)             & (9,9)             & (11,5)            \\
+		$x_{1}=$(5,1)     & $x_{11}=$(9,9)    & $x_{21}=$(11,5)   \\
 		\hline
-		(2,5)             & (7,8)             & (10,2)            \\
+		$x_{2}=$(2,5)     & $x_{12}=$(7,8)    & $x_{22}=$(10,2)   \\
 		\hline
-		(4,4)             & (5,9)             & (11,3)            \\
+		$x_{3}=$(4,4)     & $x_{13}=$(5,9)    & $x_{23}=$(11,3)   \\
 		\hline
-		(2,3)             & (9,15)            & (12,5)            \\
+		$x_{4}=$(2,3)     & $x_{14}=$(9,15)   & $x_{24}=$(12,5)   \\
 		\hline
-		(3,1)             & (7,11)            & (18,1)            \\
+		$x_{5}=$(3,1)     & $x_{15}=$(7,11)   & $x_{25}=$ (18,1)  \\
 		\hline
-		(4,2)             & (8,15)            & (16,4)            \\
+		$x_{6}=$(4,2)     & $x_{16}=$(8,15)   & $x_{26}=$(16,4)   \\
 		\hline
-		(3,3)             & (7,13)            & (14,4)            \\
+		$x_{7}=$(3,3)     & $x_{17}=$(7,13)   & $x_{27}=$(14,4)   \\
 		\hline
-		(2,2)             & (8,14)            & (12,4)            \\
+		$x_{8}=$(2,2)     & $x_{18}=$(8,14)   & $x_{28}=$(12,4)   \\
 		\hline
-		(3,4)             & (6,14)            & (17,5)            \\
+		$x_{9}=$(3,4)     & $x_{19}=$(6,14)   & $x_{29}=$(17,5)   \\
 		\hline
-		(4,3)             & (10,14)           & (13,5)            \\
+		$x_{10}=$(4,3)    & $x_{20}=$(10,14)  & $x_{30}=$(13,5)   \\
 		\hline
 	\end{tabular}
 	\caption{Classes Sample}
@@ -229,7 +229,7 @@ Given that \textbf{Class 1} has \textbf{3} votes is the winner.
 Class 1 (+1):
 \begin{equation*}
 	\begin{aligned}
-		x_{1} = \begin{bmatrix}
+		x_{3} = \begin{bmatrix}
 			        4 \\
 			        4
 		        \end{bmatrix}
@@ -239,14 +239,14 @@ Class 1 (+1):
 Class 2 (-1):
 \begin{equation*}
 	\begin{aligned}
-		x_{2} = \begin{bmatrix}
-			        10 \\
-			        2
-		        \end{bmatrix}
-		x_{3} = \begin{bmatrix}
-			        5 \\
-			        9
-		        \end{bmatrix}
+		x_{22} = \begin{bmatrix}
+			         10 \\
+			         2
+		         \end{bmatrix}
+		x_{13} = \begin{bmatrix}
+			         5 \\
+			         9
+		         \end{bmatrix}
 	\end{aligned}
 \end{equation*}
 
@@ -256,19 +256,21 @@ Here:\newline
 
 \textbf{Step 1:}
 
+From the Lectures Slides, we know that the $w$ is defined by the following equation:
+
 \begin{equation*}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} + \lambda_{2}y_{2}X_{2} + \lambda_{3}y_{3}X_{3}                                       \\
-		  & = (\lambda_{1} * 1 * \begin{bmatrix}
+		w & = \lambda_{3}y_{3}X_{3} + \lambda_{22}y_{22}X_{22} + \lambda_{13}y_{13}X_{13}                                   \\
+		  & = (\lambda_{3} * 1 * \begin{bmatrix}
 			                         4 \\
 			                         4
-		                         \end{bmatrix}) + (\lambda_{2} * -1 * \begin{bmatrix}
-			                                                              10 \\
-			                                                              2
-		                                                              \end{bmatrix}) + (\lambda_{2} * -1 * \begin{bmatrix}
-			                                                                                                   5 \\
-			                                                                                                   9
-		                                                                                                   \end{bmatrix})
+		                         \end{bmatrix}) + (\lambda_{22} * -1 * \begin{bmatrix}
+			                                                               10 \\
+			                                                               2
+		                                                               \end{bmatrix}) + (\lambda_{13} * -1 * \begin{bmatrix}
+			                                                                                                     5 \\
+			                                                                                                     9
+		                                                                                                     \end{bmatrix})
 	\end{aligned}
 \end{equation*}
 
@@ -277,24 +279,24 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{1} & =  w^T x_{1} + w_{0} = 1            \\
+		y_{3} & =  w^T x_{3} + w_{0} = 1            \\
 		      & = \begin{pmatrix}
 			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
+				\lambda_{3}\begin{bmatrix}
 					           4 \\
 					           4
 				           \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
-					           10 \\
-					           2
-				           \end{bmatrix}
+				\lambda_{22}\begin{bmatrix}
+					            10 \\
+					            2
+				            \end{bmatrix}
 				-
 
-				\lambda_{3}\begin{bmatrix}
-					           5 \\
-					           9
-				           \end{bmatrix}
+				\lambda_{13}\begin{bmatrix}
+					            5 \\
+					            9
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
 			          \begin{bmatrix}
 				4 \\
@@ -306,115 +308,113 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{2} & =  w^T x_{2} + w_{0} = -1           \\
-		      & = \begin{pmatrix}
-			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
+		y_{22} & =  w^T x_{22} + w_{0} = -1          \\
+		       & = \begin{pmatrix}
+			           \begin{pmatrix}
+				\lambda_{3}\begin{bmatrix}
 					           4 \\
 					           4
 				           \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
-					           10 \\
-					           2
-				           \end{bmatrix}
+				\lambda_{22}\begin{bmatrix}
+					            10 \\
+					            2
+				            \end{bmatrix}
 				-
 
-				\lambda_{3}\begin{bmatrix}
-					           5 \\
-					           9
-				           \end{bmatrix}\end{pmatrix}  ^ T
-			          \begin{bmatrix}
+				\lambda_{13}\begin{bmatrix}
+					            5 \\
+					            9
+				            \end{bmatrix}\end{pmatrix}  ^ T
+			           \begin{bmatrix}
 				10 \\
 				2
 			\end{bmatrix} + w_{0}
-		          \end{pmatrix} = -1
+		           \end{pmatrix} = -1
 	\end{aligned}
 \end{equation*}
 
 \begin{equation*}
 	\begin{aligned}
-		y_{3} & =  w^T x_{3} + w_{0} = -1           \\
-		      & = \begin{pmatrix}
-			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
+		y_{13} & =  w^T x_{13} + w_{0} = -1          \\
+		       & = \begin{pmatrix}
+			           \begin{pmatrix}
+				\lambda_{3}\begin{bmatrix}
 					           4 \\
 					           4
 				           \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
-					           10 \\
-					           2
-				           \end{bmatrix}
+				\lambda_{22}\begin{bmatrix}
+					            10 \\
+					            2
+				            \end{bmatrix}
 				-
 
-				\lambda_{3}\begin{bmatrix}
-					           5 \\
-					           9
-				           \end{bmatrix}\end{pmatrix}  ^ T
-			          \begin{bmatrix}
+				\lambda_{13}\begin{bmatrix}
+					            5 \\
+					            9
+				            \end{bmatrix}\end{pmatrix}  ^ T
+			           \begin{bmatrix}
 				5 \\
 				9
 			\end{bmatrix} + w_{0}
-		          \end{pmatrix} = -1
+		           \end{pmatrix} = -1
 	\end{aligned}
 \end{equation*}
 
 \textbf{Step 3:}
 \begin{equation*}
-	Solving for \lambda_{1}, \lambda_{2}, \lambda_{3}, w_{0}
+	Solving for \lambda_{3}, \lambda_{22}, \lambda_{13}, w_{0}
 \end{equation*}
 
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}\begin{pmatrix}4 \\ 4\end{pmatrix}-\lambda_{2}\begin{pmatrix}10\\ 2\end{pmatrix}-\lambda_{3}\begin{pmatrix}5\\ 9\end{pmatrix}=\begin{pmatrix}4\lambda_{1}-10\lambda_{2}-5\lambda_{3}\\ 4\lambda_{1}-2\lambda_{2}-9\lambda_{3}\end{pmatrix}
+		\lambda_{3}\begin{pmatrix}4 \\ 4\end{pmatrix}-\lambda_{22}\begin{pmatrix}10\\ 2\end{pmatrix}-\lambda_{13}\begin{pmatrix}5\\ 9\end{pmatrix}=\begin{pmatrix}4\lambda_{3}-10\lambda_{22}-5\lambda_{13}\\ 4\lambda_{3}-2\lambda_{22}-9\lambda_{13}\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}4\lambda_{1}-10\lambda_{2}-5\lambda_{3} & 4\lambda_{1}-2\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}4 \\ 4\end{pmatrix}=\begin{pmatrix}32\lambda_{1}-48\lambda_{2}-56\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}4\lambda_{3}-10\lambda_{22}-5\lambda_{13} & 4\lambda_{3}-2\lambda_{22}-9\lambda_{13}\end{pmatrix}\begin{pmatrix}4 \\ 4\end{pmatrix}=\begin{pmatrix}32\lambda_{3}-48\lambda_{22}-56\lambda_{13}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}4\lambda_{1}-10\lambda_{2}-5\lambda_{3} & 4\lambda_{1}-2\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}10 \\ 2\end{pmatrix}=\begin{pmatrix}48\lambda_{1}-104\lambda_{2}-68\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}4\lambda_{3}-10\lambda_{22}-5\lambda_{13} & 4\lambda_{3}-2\lambda_{22}-9\lambda_{13}\end{pmatrix}\begin{pmatrix}10 \\ 2\end{pmatrix}=\begin{pmatrix}48\lambda_{3}-104\lambda_{22}-68\lambda_{13}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
-	\begin{aligned}             \begin{pmatrix}4\lambda_{1}-10\lambda_{2}-5\lambda_{3}&4\lambda_{1}-2\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}5\\ 9\end{pmatrix}=\begin{pmatrix}56\lambda_{1}-68\lambda_{2}-106\lambda_{3}\end{pmatrix}
+	\begin{aligned}             \begin{pmatrix}4\lambda_{3}-10\lambda_{22}-5\lambda_{13}&4\lambda_{3}-2\lambda_{22}-9\lambda_{13}\end{pmatrix}\begin{pmatrix}5\\ 9\end{pmatrix}=\begin{pmatrix}56\lambda_{3}-68\lambda_{22}-106\lambda_{13}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
-	\lambda_{1}-\lambda_{2}-\lambda_{3}
+	\lambda_{3}-\lambda_{22}-\lambda_{13}
 \end{equation}
 
 Adding the above equations in matrix form:
 
 \begin{equation*}
 	\begin{aligned}
-		\begin{pmatrix}32 & -48 & -56 & 1 \\ 48&-104&-68&1\\ 56&-68&-106&1\\ 1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{1}\\ \lambda_{2}\\ \lambda_{3}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
+		\begin{pmatrix}32 & -48 & -56 & 1 \\ 48&-104&-68&1\\ 56&-68&-106&1\\ 1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{3}\\ \lambda_{22}\\ \lambda_{13}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}=\frac{361}{2500},\:\lambda_{2}=\frac{117}{2000},\:\lambda_{3}=\frac{859}{1000},\:w_{0}=\frac{3997}{1000}
+		\lambda_{3}=\frac{361}{2500},\:\lambda_{22}=\frac{117}{2000},\:\lambda_{13}=\frac{859}{1000},\:w_{0}=\frac{3997}{1000}
 	\end{aligned}
 \end{equation*}
 
 \vspace{20pt}
-\textbf{Step 4:} Solving for \begin{equation*}
-	w
-\end{equation*}
+\textbf{Step 4:} Solving for $w$
 
 \begin{equation}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} - \lambda_{2}y_{2}X_{2} - \lambda_{3}y_{3}X_{3}                                                                                                                        \\
+		w & = \lambda_{3}y_{3}X_{3} - \lambda_{22}y_{22}X_{22} - \lambda_{13}y_{13}X_{13}                                                                                                                  \\
 		  & = \frac{361}{2500}\begin{pmatrix}4                                      \\ 4\end{pmatrix}-\frac{117}{2000}\begin{pmatrix}10\\ 2\end{pmatrix}-\frac{859}{1000}\begin{pmatrix}5\\ 9\end{pmatrix} \\
 		  & = \begin{pmatrix}-\frac{877}{2000}                                      \\ -\frac{3141}{10000}\end{pmatrix}
 	\end{aligned}
@@ -428,9 +428,9 @@ Adding the above equations in matrix form:
 \begin{equation}
 	\begin{aligned}
 		y & = w^Tx + w_{0} = 0                                                                                                                      \\
-		  & = w^T\begin{pmatrix}x_{1}              \\x_{2}\end{pmatrix} + w_{0} = 0                                                                 \\
-		  & = \begin{pmatrix}-\frac{877}{2000}     \\ -\frac{3141}{10000}\end{pmatrix}\begin{pmatrix}x_{1}\\x_{2}\end{pmatrix} + \frac{318}{25} = 0 \\
-		  & = -\frac{349}{250}\begin{pmatrix}x_{1} \\x_{2}\end{pmatrix} + \frac{318}{25}
+		  & = w^T\begin{pmatrix}x_{i}              \\x_{j}\end{pmatrix} + w_{0} = 0                                                                 \\
+		  & = \begin{pmatrix}-\frac{877}{2000}     \\ -\frac{3141}{10000}\end{pmatrix}\begin{pmatrix}x_{i}\\x_{j}\end{pmatrix} + \frac{318}{25} = 0 \\
+		  & = -\frac{349}{250}\begin{pmatrix}x_{i} \\x_{j}\end{pmatrix} + \frac{318}{25}
 	\end{aligned}
 \end{equation}
 
@@ -442,10 +442,10 @@ Adding the above equations in matrix form:
 Class 1 (+1):
 \begin{equation*}
 	\begin{aligned}
-		x_{1} = \begin{bmatrix}
-			        7 \\
-			        8
-		        \end{bmatrix}
+		x_{12} = \begin{bmatrix}
+			         7 \\
+			         8
+		         \end{bmatrix}
 	\end{aligned}
 \end{equation*}
 
@@ -456,10 +456,10 @@ Class 2 (-1):
 			        2 \\
 			        5
 		        \end{bmatrix}
-		x_{3} = \begin{bmatrix}
-			        11 \\
-			        5
-		        \end{bmatrix}
+		x_{21} = \begin{bmatrix}
+			         11 \\
+			         5
+		         \end{bmatrix}
 	\end{aligned}
 \end{equation*}
 
@@ -472,17 +472,17 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} + \lambda_{2}y_{2}X_{2}   + \lambda_{3}y_{3}X_{3}                                      \\
-		  & = (\lambda_{1} * 1 * \begin{bmatrix}
-			                         7 \\
-			                         8
-		                         \end{bmatrix}) + (\lambda_{1} * -1 * \begin{bmatrix}
-			                                                              2 \\
-			                                                              5
-		                                                              \end{bmatrix})  + (\lambda_{1} * -1 * \begin{bmatrix}
-			                                                                                                    11 \\
-			                                                                                                    5
-		                                                                                                    \end{bmatrix})
+		w & = \lambda_{12}y_{12}X_{12} + \lambda_{2}y_{2}X_{2}   + \lambda_{21}y_{21}X_{21}                                  \\
+		  & = (\lambda_{12} * 1 * \begin{bmatrix}
+			                          7 \\
+			                          8
+		                          \end{bmatrix}) + (\lambda_{2} * -1 * \begin{bmatrix}
+			                                                               2 \\
+			                                                               5
+		                                                               \end{bmatrix})  + (\lambda_{21} * -1 * \begin{bmatrix}
+			                                                                                                      11 \\
+			                                                                                                      5
+		                                                                                                      \end{bmatrix})
 	\end{aligned}
 \end{equation*}
 
@@ -492,29 +492,29 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{1} & =  w^T x_{1} + w_{0} = 1                \\
-		      & = 1 * \begin{pmatrix}
-			              \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           7 \\
-					           8
-				           \end{bmatrix} -
+		y_{12} & =  w^T x_{12} + w_{0} = 1               \\
+		       & = 1 * \begin{pmatrix}
+			               \begin{pmatrix}
+				\lambda_{12}\begin{bmatrix}
+					            7 \\
+					            8
+				            \end{bmatrix} -
 
 				\lambda_{2}\begin{bmatrix}
 					           2 \\
 					           5
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix}
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix}
 			\end{pmatrix}   ^ T
-			              \begin{bmatrix}
+			               \begin{bmatrix}
 				7 \\
 				8
 			\end{bmatrix} + w_{0}
-		              \end{pmatrix} = 1
+		               \end{pmatrix} = 1
 	\end{aligned}
 \end{equation*}
 
@@ -523,20 +523,20 @@ Here:\newline
 		y_{2} & =  w^T x_{2} + w_{0} = -1               \\
 		      & = 1 * \begin{pmatrix}
 			              \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           7 \\
-					           8
-				           \end{bmatrix} -
+				\lambda_{12}\begin{bmatrix}
+					            7 \\
+					            8
+				            \end{bmatrix} -
 
 				\lambda_{2}\begin{bmatrix}
 					           2 \\
 					           5
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix}
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
 			              \begin{bmatrix}
 				2 \\
@@ -548,65 +548,65 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{3} & =  w^T x_{3} + w_{0} = -1               \\
-		      & = 1 * \begin{pmatrix}
-			              \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           7 \\
-					           8
-				           \end{bmatrix} -
+		y_{21} & =  w^T x_{21} + w_{0} = -1              \\
+		       & = 1 * \begin{pmatrix}
+			               \begin{pmatrix}
+				\lambda_{12}\begin{bmatrix}
+					            7 \\
+					            8
+				            \end{bmatrix} -
 
 				\lambda_{2}\begin{bmatrix}
 					           2 \\
 					           5
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix}
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
-			              \begin{bmatrix}
+			               \begin{bmatrix}
 				11 \\
 				5
 			\end{bmatrix} + w_{0}
-		              \end{pmatrix} = -1
+		               \end{pmatrix} = -1
 	\end{aligned}
 \end{equation*}
 
 \textbf{Step 3:}
 \begin{equation*}
-	Solving for \lambda_{1}, \lambda_{2}, \lambda_{3}, w_{0}
+	Solving for \lambda_{12}, \lambda_{2}, \lambda_{21}, w_{0}
 \end{equation*}
 
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}\begin{pmatrix}7 \\ 8\end{pmatrix}+\lambda_{2}\begin{pmatrix}2\\ 5\end{pmatrix}-\lambda_{3}\begin{pmatrix}11\\ 5\end{pmatrix}=\begin{pmatrix}7\lambda_{1}-2\lambda_{2}-11\lambda_{3}\\ 8\lambda_{1}-5\lambda_{2}-5\lambda_{3}\end{pmatrix}
+		\lambda_{12}\begin{pmatrix}7 \\ 8\end{pmatrix}-\lambda_{2}\begin{pmatrix}2\\ 5\end{pmatrix}-\lambda_{21}\begin{pmatrix}11\\ 5\end{pmatrix}=\begin{pmatrix}7\lambda_{12}-2\lambda_{2}-11\lambda_{21}\\ 8\lambda_{1}-5\lambda_{2}-5\lambda_{3}\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}7\lambda_{1}-2\lambda_{2}-11\lambda_{3} & 8\lambda_{1}-5\lambda_{2}-5\lambda_{3}\end{pmatrix}\begin{pmatrix}7 \\ 8\end{pmatrix}=\begin{pmatrix}113\lambda_{1}-54\lambda_{2}-117\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}7\lambda_{12}-2\lambda_{2}-11\lambda_{21} & 8\lambda_{13}-5\lambda_{2}-5\lambda_{21}\end{pmatrix}\begin{pmatrix}7 \\ 8\end{pmatrix}=\begin{pmatrix}113\lambda_{12}-54\lambda_{2}-117\lambda_{21}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}7\lambda_{1}-2\lambda_{2}-11\lambda_{3} & 8\lambda_{1}-5\lambda_{2}-5\lambda_{3}\end{pmatrix}\begin{pmatrix}2 \\ 5\end{pmatrix}=\begin{pmatrix}54\lambda_{1}-29\lambda_{2}-47\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}7\lambda_{12}-2\lambda_{2}-11\lambda_{21} & 8\lambda_{12}-5\lambda_{2}-5\lambda_{21}\end{pmatrix}\begin{pmatrix}2 \\ 5\end{pmatrix}=\begin{pmatrix}54\lambda_{12}-29\lambda_{2}-47\lambda_{21}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}7\lambda_{1}-2\lambda_{2}-11\lambda_{3} & 8\lambda_{1}-5\lambda_{2}-5\lambda_{3}\end{pmatrix}\begin{pmatrix}5 \\ 9\end{pmatrix}=\begin{pmatrix}117\lambda_{1}-47\lambda_{2}-146\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}7\lambda_{12}-2\lambda_{2}-11\lambda_{21} & 8\lambda_{12}-5\lambda_{2}-5\lambda_{21}\end{pmatrix}\begin{pmatrix}5 \\ 9\end{pmatrix}=\begin{pmatrix}117\lambda_{12}-47\lambda_{2}-146\lambda_{21}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}\lambda_{1}-\lambda_{2}-\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}\lambda_{1}-\lambda_{2}-\lambda_{21}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
@@ -615,25 +615,22 @@ Adding the above equations in matrix form:
 
 \begin{equation*}
 	\begin{aligned}
-		\begin{pmatrix}113 & -54 & -117 & 1 \\ \:54&-29&-47&1\\ \:117&-47&-146&1\\ \:1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{1}\\ \lambda_{2}\\ \lambda_{3}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
+		\begin{pmatrix}113 & -54 & -117 & 1 \\ \:54&-29&-47&1\\ \:117&-47&-146&1\\ \:1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{12}\\ \lambda_{2}\\ \lambda_{21}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}=\frac{2}{9},\:\lambda_{2}=\frac{8}{81},\:\lambda_{3}=\frac{10}{81},\:w_{0}=-\frac{13}{3}
+		\lambda_{12}=\frac{2}{9},\:\lambda_{2}=\frac{8}{81},\:\lambda_{21}=\frac{10}{81},\:w_{0}=-\frac{13}{3}
 	\end{aligned}
 \end{equation*}
 
 \vspace{20pt}
-\textbf{Step 4:} Solving for \begin{equation*}
-	\begin{aligned}w
-	\end{aligned}
-\end{equation*}
+\textbf{Step 4:} Solving for $w$
 
 \begin{equation}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} - \lambda_{2}y_{2}X_{2} - \lambda_{3}y_{3}X_{3}                                                                                                                 \\
+		w & = \lambda_{12}y_{1}X_{12} - \lambda_{2}y_{2}X_{2} - \lambda_{21}y_{21}X_{21}                                                                                                            \\
 		  & = \frac{2}{9}\begin{pmatrix}7                                           \\ 8\end{pmatrix}-\frac{8}{81}\begin{pmatrix}2\\ 5\end{pmatrix}-\frac{10}{81}\begin{pmatrix}11\\ 5\end{pmatrix} \\
 		  & = \begin{pmatrix}0                                                      \\ \frac{2}{3}\end{pmatrix}
 	\end{aligned}
@@ -645,8 +642,8 @@ Adding the above equations in matrix form:
 \begin{equation}
 	\begin{aligned}
 		y & = w^Tx + w_{0} = 0                                                                                            \\
-		  & = w^T\begin{pmatrix}x_{1} \\x_{2}\end{pmatrix} + w_{0} = 0                                                    \\
-		  & = \begin{pmatrix}0        \\ \frac{2}{3}\end{pmatrix}\begin{pmatrix}x_{1}\\x_{2}\end{pmatrix}+-\frac{13}{3}=0 \\
+		  & = w^T\begin{pmatrix}x_{i} \\x_{j}\end{pmatrix} + w_{0} = 0                                                    \\
+		  & = \begin{pmatrix}0        \\ \frac{2}{3}\end{pmatrix}\begin{pmatrix}x_{i}\\x_{j}\end{pmatrix}+-\frac{13}{3}=0 \\
 		  & = 6.5
 	\end{aligned}
 \end{equation}
@@ -657,24 +654,24 @@ Adding the above equations in matrix form:
 Class 1 (+1):
 \begin{equation*}
 	\begin{aligned}
-		x_{1} = \begin{bmatrix}
-			        11 \\
-			        5
-		        \end{bmatrix}
+		x_{21} = \begin{bmatrix}
+			         11 \\
+			         5
+		         \end{bmatrix}
 	\end{aligned}
 \end{equation*}
 
 Class 2 (-1):
 \begin{equation*}
 	\begin{aligned}
-		x_{2} = \begin{bmatrix}
+		x_{1} = \begin{bmatrix}
 			        5 \\
 			        1
 		        \end{bmatrix}
-		x_{3} = \begin{bmatrix}
-			        9 \\
-			        9
-		        \end{bmatrix}
+		x_{11} = \begin{bmatrix}
+			         9 \\
+			         9
+		         \end{bmatrix}
 	\end{aligned}
 \end{equation*}
 
@@ -685,17 +682,17 @@ Here:\newline
 \textbf{Step 1:}\newline\newline
 \begin{equation*}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} + \lambda_{2}y_{2}X_{2} + \lambda_{3}y_{3}X_{3}                                      \\
-		  & = (\lambda_{1} * 1 * \begin{bmatrix}
-			                         11 \\
-			                         5
-		                         \end{bmatrix}) + (\lambda_{2} * 1 * \begin{bmatrix}
-			                                                             5 \\
-			                                                             1
-		                                                             \end{bmatrix}) + (\lambda_{3} * -1 * \begin{bmatrix}
-			                                                                                                  9 \\
-			                                                                                                  9
-		                                                                                                  \end{bmatrix})
+		w & = \lambda_{21}y_{21}x_{21} + \lambda_{1}y_{1}X_{1} + \lambda_{11}y_{11}X_{11}                                  \\
+		  & = (\lambda_{21} * 1 * \begin{bmatrix}
+			                          11 \\
+			                          5
+		                          \end{bmatrix}) + (\lambda_{1} * 1 * \begin{bmatrix}
+			                                                              5 \\
+			                                                              1
+		                                                              \end{bmatrix}) + (\lambda_{11} * -1 * \begin{bmatrix}
+			                                                                                                    9 \\
+			                                                                                                    9
+		                                                                                                    \end{bmatrix})
 	\end{aligned}
 \end{equation*}
 
@@ -703,23 +700,23 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{1} & =  w^T x_{1} + w_{0} = 1             \\
+		y_{1} & =  w^T x_{21} + w_{0} = 1            \\
 		      & = \begin{pmatrix}
 			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix} -
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
+				\lambda_{1}\begin{bmatrix}
 					           5 \\
 					           1
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           9 \\
-					           9
-				           \end{bmatrix}
+				\lambda_{11}\begin{bmatrix}
+					            9 \\
+					            9
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
 			          \begin{bmatrix}
 				11 \\
@@ -731,57 +728,57 @@ Here:\newline
 
 \begin{equation*}
 	\begin{aligned}
-		y_{2} & =  w^T x_{2} + w_{0} = 1             \\
-		      & = \begin{pmatrix}
-			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix} -
+		y_{21} & =  w^T x_{1} + w_{0} = 1             \\
+		       & = \begin{pmatrix}
+			           \begin{pmatrix}
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
+				\lambda_{1}\begin{bmatrix}
 					           5 \\
 					           1
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           9 \\
-					           9
-				           \end{bmatrix}
+				\lambda_{11}\begin{bmatrix}
+					            9 \\
+					            9
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
-			          \begin{bmatrix}
+			           \begin{bmatrix}
 				5 \\
 				1
 			\end{bmatrix} + w_{0}
-		          \end{pmatrix} = -1
+		           \end{pmatrix} = -1
 	\end{aligned}
 \end{equation*}
 
 \begin{equation*}
 	\begin{aligned}
-		y_{3} & =  w^T x_{3} + w_{0} = -1            \\
-		      & = \begin{pmatrix}
-			          \begin{pmatrix}
-				\lambda_{1}\begin{bmatrix}
-					           11 \\
-					           5
-				           \end{bmatrix} -
+		y_{11} & =  w^T x_{11} + w_{0} = -1           \\
+		       & = \begin{pmatrix}
+			           \begin{pmatrix}
+				\lambda_{21}\begin{bmatrix}
+					            11 \\
+					            5
+				            \end{bmatrix} -
 
-				\lambda_{2}\begin{bmatrix}
+				\lambda_{1}\begin{bmatrix}
 					           5 \\
 					           1
 				           \end{bmatrix} -
 
-				\lambda_{3}\begin{bmatrix}
-					           9 \\
-					           9
-				           \end{bmatrix}
+				\lambda_{11}\begin{bmatrix}
+					            9 \\
+					            9
+				            \end{bmatrix}
 			\end{pmatrix}  ^ T
-			          \begin{bmatrix}
+			           \begin{bmatrix}
 				9 \\
 				9
 			\end{bmatrix} + w_{0}
-		          \end{pmatrix} = -1
+		           \end{pmatrix} = -1
 	\end{aligned}
 \end{equation*}
 
@@ -789,37 +786,37 @@ Here:\newline
 
 \textbf{Step 3:}
 \begin{equation*}
-	Solving for \lambda_{1}, \lambda_{2}, \lambda_{3}, w_{0}
+	Solving for \lambda_{21}, \lambda_{1}, \lambda_{11}, w_{0}
 \end{equation*}
 
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}\begin{pmatrix}11 \\ 5\end{pmatrix}-\lambda_{2}\begin{pmatrix}5\\ 1\end{pmatrix}-\lambda_{3}\begin{pmatrix}9\\ 9\end{pmatrix}=\begin{pmatrix}11\lambda_{1}-5\lambda_{2}-9\lambda_{3}\\ 5\lambda_{1}-\lambda_{2}-9\lambda_{3}\end{pmatrix}
+		\lambda_{21}\begin{pmatrix}11 \\ 5\end{pmatrix}-\lambda_{1}\begin{pmatrix}5\\ 1\end{pmatrix}-\lambda_{11}\begin{pmatrix}9\\ 9\end{pmatrix}=\begin{pmatrix}11\lambda_{21}-5\lambda_{1}-9\lambda_{11}\\ 5\lambda_{21}-\lambda_{1}-9\lambda_{11}\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}11\lambda_{1}-5\lambda_{2}-9\lambda_{3} & 5\lambda_{1}-\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}11 \\ 5\end{pmatrix}=\begin{pmatrix}146\lambda_{1}-60\lambda_{2}-144\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}11\lambda_{21}-5\lambda_{1}-9\lambda_{11} & 5\lambda_{21}-\lambda_{1}-9\lambda_{11}\end{pmatrix}\begin{pmatrix}11 \\ 5\end{pmatrix}=\begin{pmatrix}146\lambda_{21}-60\lambda_{1}-144\lambda_{11}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}11\lambda_{1}-5\lambda_{2}-9\lambda_{3} & 5\lambda_{1}-\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}5 \\ 1\end{pmatrix}=\begin{pmatrix}60\lambda_{1}-26\lambda_{2}-54\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}11\lambda_{21}-5\lambda_{1}-9\lambda_{11} & 5\lambda_{21}-\lambda_{1}-9\lambda_{11}\end{pmatrix}\begin{pmatrix}5 \\ 1\end{pmatrix}=\begin{pmatrix}60\lambda_{21}-26\lambda_{1}-54\lambda_{11}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}11\lambda_{1}-5\lambda_{2}-9\lambda_{3} & 5\lambda_{1}-\lambda_{2}-9\lambda_{3}\end{pmatrix}\begin{pmatrix}9 \\ 9\end{pmatrix}=\begin{pmatrix}144\lambda_{1}-54\lambda_{2}-162\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}11\lambda_{21}-5\lambda_{1}-9\lambda_{11} & 5\lambda_{21}-\lambda_{1}-9\lambda_{11}\end{pmatrix}\begin{pmatrix}9 \\ 9\end{pmatrix}=\begin{pmatrix}144\lambda_{21}-54\lambda_{1}-162\lambda_{11}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
 \begin{equation}
 	\begin{aligned}
-		\begin{pmatrix}\lambda_{1}-\lambda_{2}-\lambda_{3}\end{pmatrix}
+		\begin{pmatrix}\lambda_{21}-\lambda_{1}-\lambda_{11}\end{pmatrix}
 	\end{aligned}
 \end{equation}
 
@@ -827,27 +824,23 @@ Adding the above equations in matrix form:
 
 \begin{equation*}
 	\begin{aligned}
-		\begin{pmatrix}146 & -60 & -144 & 1 \\ 60&-26&-54&1\\ 144&-54&-162&1\\ 1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{1}\\ \lambda_{2}\\ \lambda_{3}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
+		\begin{pmatrix}146 & -60 & -144 & 1 \\ 60&-26&-54&1\\ 144&-54&-162&1\\ 1&-1&-1&0\end{pmatrix}\begin{pmatrix}\lambda_{21}\\ \lambda_{1}\\ \lambda_{11}\\ w_{0}\end{pmatrix}=\begin{pmatrix}1\\ -1\\ -1\\ 0\end{pmatrix}
 	\end{aligned}
 \end{equation*}
 
 \begin{equation*}
 	\begin{aligned}
-		\lambda_{1}=\frac{5}{32},\:\lambda_{2}=\frac{3}{64},\:\lambda_{3}=\frac{7}{64}\:w_{0}=-\frac{13}{4}
+		\lambda_{21}=\frac{5}{32},\:\lambda_{1}=\frac{3}{64},\:\lambda_{11}=\frac{7}{64}\:w_{0}=-\frac{13}{4}
 	\end{aligned}
 \end{equation*}
 
 \vspace{20pt}
 
-\textbf{Step 4:} Solving for \begin{equation*}
-	\begin{aligned}
-		w
-	\end{aligned}
-\end{equation*}
+\textbf{Step 4:} Solving for $w$
 
 \begin{equation}
 	\begin{aligned}
-		w & = \lambda_{1}y_{1}X_{1} - \lambda_{2}y_{2}X_{2} - \lambda_{3}y_{3}X_{3}                                                                                                                                                  \\
+		w & = \lambda_{21}y_{21}x_{21} - \lambda_{1}y_{1}X_{1} - \lambda_{11}y_{11}X_{11}                                                                                                                                            \\
 		  & = \frac{5}{32}\begin{pmatrix}11                                         \\ 5\end{pmatrix}-\frac{3}{64}\begin{pmatrix}5\\ 1\end{pmatrix}-\frac{7}{64}\begin{pmatrix}9\\ 9\end{pmatrix}                                    \\
 		  & = \begin{pmatrix}\frac{55}{32}                                          \\ \frac{25}{32}\end{pmatrix}-\begin{pmatrix}\frac{15}{64}\\ \frac{3}{64}\end{pmatrix}-\begin{pmatrix}\frac{63}{64}\\ \frac{63}{64}\end{pmatrix} \\
 		  & = \begin{pmatrix}\frac{1}{2}                                            \\ -\frac{1}{4}\end{pmatrix}
@@ -862,9 +855,9 @@ Adding the above equations in matrix form:
 \begin{equation}
 	\begin{aligned}
 		y & = w^Tx + w_{0} = 0                                                                                                    \\
-		  & = w^T\begin{pmatrix}x_{1}\\x_{2}\end{pmatrix} + w_{0} = 0                                                             \\
-		  & = \begin{pmatrix}\frac{1}{2} & -\frac{1}{4}\end{pmatrix}\begin{pmatrix}x_{1} \\x_{2}\end{pmatrix} + -\frac{13}{4} = 0 \\
-		  & = 2\begin{pmatrix}x_{1}\\x_{2}\end{pmatrix} - 13
+		  & = w^T\begin{pmatrix}x_{i}\\x_{j}\end{pmatrix} + w_{0} = 0                                                             \\
+		  & = \begin{pmatrix}\frac{1}{2} & -\frac{1}{4}\end{pmatrix}\begin{pmatrix}x_{i} \\x_{j}\end{pmatrix} + -\frac{13}{4} = 0 \\
+		  & = 2\begin{pmatrix}x_{21}\\x_{2}\end{pmatrix} - 13
 	\end{aligned}
 \end{equation}
 
