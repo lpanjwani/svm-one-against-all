@@ -1,1 +1,1 @@
-# svm-one-against-all
+# SVM One-Against-All Classifier
